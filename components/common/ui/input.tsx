@@ -1,4 +1,5 @@
 import React from "react";
+import { UseFormRegister } from "react-hook-form";
 
 interface IProps {
   name: string;
@@ -6,6 +7,7 @@ interface IProps {
   label: string;
   placeholder?: string;
   id: string;
+  register : UseFormRegister<any>
 }
 
 const Input = ({
@@ -14,6 +16,7 @@ const Input = ({
   label,
   placeholder = "start typing..",
   type = "text",
+  register
 }: IProps) => {
   return (
     <div className="flex flex-col gap-0.5">
@@ -21,6 +24,7 @@ const Input = ({
         {label}
       </label>
       <input
+      {...register(name)}
         id={id}
         name={name}
         placeholder={placeholder}
