@@ -2,17 +2,12 @@
 import { useState } from "react";
 import Input from "../ui/input";
 import { useForm } from "react-hook-form";
-
-type TRegister = {
-  fullname: string;
-  email: string;
-  password: string;
-  cpassword: string;
-  phone: string;
-};
+import { yupResolver } from "@hookform/resolvers/yup";
+import { registerSchema } from "@/schema/auth.schema";
+import { TRegister } from "@/types/auth.types";
 
 const RegisterForm = () => {
-  const { register, handleSubmit } = useForm<TRegister>({
+  const { register, handleSubmit, formState : {errors} } = useForm<TRegister>({
     defaultValues: {
       fullname: "",
       email: "",
@@ -20,10 +15,12 @@ const RegisterForm = () => {
       cpassword: "",
       phone: "",
     },
+    resolver : yupResolver(registerSchema)
   });
+  console.log(errors);
 
   const onSubmit = (data: TRegister) => {
-    console.log("form submitted", data);
+    console.log("form submitted :", data);
   };
 
   return (
@@ -37,7 +34,7 @@ const RegisterForm = () => {
         label="Full Name"
         name="fullname"
         placeholder="Enter your full name"
-        type={"text"}
+        error={errors?.fullname?.message}
       />
 
       <Input
@@ -46,7 +43,7 @@ const RegisterForm = () => {
         label="Email"
         name="email"
         placeholder="Enter email or phone number"
-        type={"email"}
+        error={errors?.email?.message}
       />
 
       <Input
@@ -54,8 +51,9 @@ const RegisterForm = () => {
         id="password"
         label="Password"
         name="password"
+        type="password"
         placeholder="Enter your password"
-        type={"password"}
+        error={errors?.password?.message}
       />
 
       <Input
@@ -65,6 +63,7 @@ const RegisterForm = () => {
         name="cpassword"
         placeholder="Enter your confirm password"
         type={"password"}
+        error={errors?.cpassword?.message}
       />
 
       <Input
@@ -73,7 +72,7 @@ const RegisterForm = () => {
         label="Phone"
         name="phone"
         placeholder="Enter your phone number"
-        type={"text"}
+        error={errors?.phone?.message}
       />
 
       <div className="mt-5">
