@@ -1,19 +1,19 @@
 "use client";
 import { useForm } from "react-hook-form";
 import Input from "../ui/input";
-
-type TLogin = {
-  email: string;
-  password: string;
-};
+import { yupResolver } from "@hookform/resolvers/yup";
+import { loginSchema } from "@/schema/auth.schema";
+import { TLogin } from "@/types/auth.types";
 
 const LoginForm = () => {
-  const { register, handleSubmit } = useForm<TLogin>({
+  const { register, handleSubmit, formState: { errors } } = useForm<TLogin>({
     defaultValues: {
       email: "",
       password: "",
     },
+    resolver : yupResolver(loginSchema)
   });
+  console.log(errors);
 
   const onSubmit = (data: TLogin) => {
     console.log("form submitted", data);
@@ -31,6 +31,7 @@ const LoginForm = () => {
         name="email"
         placeholder="Enter email or phone number"
         type={"email"}
+        error={errors?.email?.message}
       />
 
       <Input
@@ -40,6 +41,7 @@ const LoginForm = () => {
         name="password"
         placeholder="Enter your password"
         type={"password"}
+        error={errors?.password?.message}
       />
 
       <div className="mt-5">

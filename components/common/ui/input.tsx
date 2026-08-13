@@ -7,7 +7,8 @@ interface IProps {
   label: string;
   placeholder?: string;
   id: string;
-  register : UseFormRegister<any>
+  register: UseFormRegister<any>;
+  error?: string;
 }
 
 const Input = ({
@@ -16,7 +17,8 @@ const Input = ({
   label,
   placeholder = "start typing..",
   type = "text",
-  register
+  register,
+  error,
 }: IProps) => {
   return (
     <div className="flex flex-col gap-0.5">
@@ -24,13 +26,17 @@ const Input = ({
         {label}
       </label>
       <input
-      {...register(name)}
+        {...register(name)}
         id={id}
         name={name}
         placeholder={placeholder}
         type={type}
-        className="border border-gray-300 px-2 py-3 rounded-md focus : outline-sky-500 "
+        className={` border px-2 py-3 rounded-md ${error ?
+          "border-red-500 focus: outline-red-500 focus: border-red-500"
+          :
+          " border-gray-400 focus: outline-sky-500 focus: border-sky-500"} `}
       />
+      <small className="text-red-500 h-3 -mt-0.5">{error}</small>
     </div>
   );
 };
