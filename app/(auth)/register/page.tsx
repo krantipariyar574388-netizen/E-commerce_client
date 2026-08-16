@@ -1,4 +1,6 @@
+// "use client"
 import RegisterForm from "@/components/common/form/register.form";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Metadata } from "next";
 import Link from "next/link";
 
@@ -6,6 +8,8 @@ export const metadata: Metadata = {
   title: "Register | Ecommerce App",
   description: "Ecommerce App register Page",
 };
+
+// const queryClient = new QueryClient()
 
 const RegisterPage = () => {
   return (
@@ -17,7 +21,10 @@ const RegisterPage = () => {
           </h1>
         </div>
 
+        {/* <QueryClientProvider client = {queryClient}> */}
         <RegisterForm />
+        {/* </QueryClientProvider> */}
+        
         <div className="mt-1">
           <p className="text-center text-[14px]">
             Already have an account?

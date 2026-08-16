@@ -11,7 +11,7 @@ export const loginSchema = yup.object({
 
 // Register schema
 export const registerSchema = yup.object({
-  fullname: yup.string().required("Full name is required"),
+  fullName: yup.string().required("Full name is required"),
   email: yup.string().email("Invalid email").required("Email is required"),
   password: yup
     .string()
@@ -27,5 +27,18 @@ export const registerSchema = yup.object({
     .string()
     .oneOf([yup.ref("password")], "Password do not match")
     .required("Confirm password is required"),
-  phone: yup.string().required("Phone number is required"),
+  phone: yup
+    .string()
+    .matches(/^\d+$/, {
+      message: "phone must contains only numbers",
+      excludeEmptyString: true,
+    })
+    // .min(10, "numbers must contain 10 digits")
+    // .max(10, "numbers must contain 10 digits")
+    .test("test-length", "phone must contain 10 digits", (value) => {
+      if (value && value.trim().length === 10) {
+        return true;
+      }
+    })
+    .notRequired(),
 });

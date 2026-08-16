@@ -1,15 +1,20 @@
 "use client";
-import { useState } from "react";
+import { useReducer, useState } from "react";
 import Input from "../ui/input";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { registerSchema } from "@/schema/auth.schema";
 import { TRegister } from "@/types/auth.types";
+import { register as registerUser } from "@/api/auth.api";
+import { useMutation } from "@tanstack/react-query";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 const RegisterForm = () => {
-  const { register, handleSubmit, formState : {errors} } = useForm<TRegister>({
+  const router = useRouter()
+  const { register, handleSubmit, formState: { errors } } = useForm<TRegister>({
     defaultValues: {
-      fullname: "",
+      fullName: "",
       email: "",
       password: "",
       cpassword: "",
@@ -17,11 +22,24 @@ const RegisterForm = () => {
     },
     resolver : yupResolver(registerSchema)
   });
-  console.log(errors);
 
-  const onSubmit = (data: TRegister) => {
-    console.log("form submitted :", data);
-  };
+  // mutation
+  const {mutate, isPending } = useMutation({
+    // mutation : register,
+    mutationFn : (formData: TRegister) => registerUser(formData),
+    onSuccess : (data) => {
+      toast.success(data?.message ?? "Register success")
+      router.replace('/login')
+    },
+    onError : (error) => {
+      toast.error(error?.message ?? "Register failed")
+    }
+  })
+
+  //on Submit
+  const onSubmit = async (data: TRegister) => {
+      mutate(data)
+    };
 
   return (
     <form
@@ -30,11 +48,11 @@ const RegisterForm = () => {
     >
       <Input
         register={register}
-        id="fullname"
+        id="fullName"
         label="Full Name"
-        name="fullname"
+        name="fullName"
         placeholder="Enter your full name"
-        error={errors?.fullname?.message}
+        error={errors?.fullName?.message}
       />
 
       <Input
