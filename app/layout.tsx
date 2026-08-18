@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ReactQueryProvider from "@/providers/query_provider";
 import { Toaster } from 'react-hot-toast';
+import NavBar from "@/components/client/layout/nav";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -26,6 +27,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col tracking-wider">
         <ReactQueryProvider>
+          {/* <NavBar/> */}
           {children}
           <Toaster />
         </ReactQueryProvider>
