@@ -1,5 +1,9 @@
 import Link from "next/link";
 import { RxDashboard } from "react-icons/rx";
+import { MdOutlineBrandingWatermark } from "react-icons/md";
+import { TbCategoryPlus } from "react-icons/tb";
+import { MdOutlineProductionQuantityLimits } from "react-icons/md";
+import { FaRegUser } from "react-icons/fa";
 
 const links : { label : string, path : string, id : string, icon : React.ReactNode}[] = [
     {
@@ -12,24 +16,24 @@ const links : { label : string, path : string, id : string, icon : React.ReactNo
       label : "Brands",
     path : "/admin/brands",
     id : "brands",
-    icon : <RxDashboard />
+    icon : <MdOutlineBrandingWatermark />
   },
   {
       label : "Categories",
     path : "/admin/categories",
     id : "categories",
-    icon : <RxDashboard />
+    icon : <TbCategoryPlus />
   },{
       label : "Products",
     path : "/admin/products",
     id : "products",
-    icon : <RxDashboard />
+    icon : <MdOutlineProductionQuantityLimits />
   },
   {
    label : "Users",
     path : "/admin/users",
     id : "users",
-    icon : <RxDashboard />
+    icon : <FaRegUser />
   }
 ]
 

@@ -3,7 +3,7 @@ import React from 'react'
 const CategoriesPage = () => {
   return (
     <main>
-        <h1>category List Page</h1>
+        <h1>Category List Page</h1>
     </main>
   )
 }
