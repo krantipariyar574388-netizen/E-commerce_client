@@ -6,7 +6,7 @@ const NewProducts = () => {
         <section className='px-20 py-10'>
             {/* heading */}
             <SectionHeading
-                title='All new arrival Products'
+                title='New arrival Products'
                 subTitle='Discover our featured new arrival products'
                 link='#'
             />

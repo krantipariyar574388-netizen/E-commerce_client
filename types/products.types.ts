@@ -8,5 +8,5 @@ export type TProducts = {
   createdAt: string;
   updatedAt: string;
   description: string;
-  price: string;
+  rate: string;
 };
