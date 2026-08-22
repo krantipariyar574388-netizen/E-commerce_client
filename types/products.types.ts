@@ -1,3 +1,5 @@
+import { TCategory } from "./category.types";
+
 export type TProducts = {
   name: string;
   _id: string;
@@ -5,6 +7,8 @@ export type TProducts = {
     path: string;
     public_id: string;
   };
+  category: TCategory;
+  brand: TCategory;
   createdAt: string;
   updatedAt: string;
   description: string;

@@ -1,11 +1,12 @@
 import { TLogin, TRegister } from "@/types/auth.types"
 import axios from "axios"
+import api from ".";
 
 // login
 export const login = async (data : TLogin) => {
     try {
-        const response = await axios.post(
-            "http://localhost:8080/auth/login",
+        const response = await api.post(
+            "/auth/login",
             data,
         );
         console.log(response.data);
@@ -18,8 +19,8 @@ export const login = async (data : TLogin) => {
 
 export const register = async (data : TRegister) => {
     try {
-        const response = await axios.post(
-            "http://localhost:8080/auth/register",
+        const response = await api.post(
+            "/auth/register",
             data,
         );
         console.log(response.data);

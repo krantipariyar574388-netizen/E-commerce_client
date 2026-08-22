@@ -8,7 +8,7 @@ interface IProps {
     products: TProducts
 }
 
-const ProductCard = ({ products: { _id, name, cover_image, description, rate } }: IProps) => {
+const ProductCard = ({ products: { _id, name, cover_image, description, rate, category, brand } }: IProps) => {
     return (
         <div className='max-w-60 h-full border border-gray-300 rounded-md group flex flex-col'>
             {/* image */}
@@ -24,9 +24,15 @@ const ProductCard = ({ products: { _id, name, cover_image, description, rate } }
 
             <div className='p-1 pb-2 flex flex-col gap-1 mt-2 grow'>
                 <p className='text-md font-semibold text-gray-700'>{name}</p>
-                <div className='flex'>
-                <FaRupeeSign />
-                <p>{rate}</p>
+
+                <div className='flex gap-1 items-center my-1'>
+                    <p className='px-1 py-0.5 border border-yellow-500 bg-yellow-500/20 rounded-lg text-xs'>{category.name}</p>
+                    <p className='px-1 py-0.5 border border-yellow-500 bg-yellow-500/20 rounded-lg text-xs'>{brand.name}</p>
+                </div>
+
+                <div className='flex item-center gap-1'>
+                <FaRupeeSign size={16}/>
+                <p className='text-yellow-500 font-semibold'>{rate}</p>
             </div>
                 <p className='text-sm text-gray-500 line-clamp-4'>{description}</p>
             </div>
