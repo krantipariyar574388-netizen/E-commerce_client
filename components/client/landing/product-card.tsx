@@ -1,6 +1,7 @@
 import { TProducts } from '@/types/products.types'
 import Image from 'next/image'
 import Link from 'next/link'
+import { FaRegHeart } from 'react-icons/fa';
 import { FaRupeeSign } from "react-icons/fa6";
 
 
@@ -10,7 +11,10 @@ interface IProps {
 
 const ProductCard = ({ products: { _id, name, cover_image, description, rate, category, brand } }: IProps) => {
     return (
-        <div className='max-w-60 h-full border border-gray-300 rounded-md group flex flex-col'>
+        <div className='relative max-w-60 h-full border border-gray-300 rounded-md group flex flex-col'>
+            <button className='absolute top-2 right-1 z-10 cursor-pointer border border-yellow-600 h-8 aspect-square rounded-full flex justify-left items-center p-1 bg-yellow-500/30'>
+                <FaRegHeart className='text-yellow-600 size={20}' />
+            </button>
             {/* image */}
             <div className='w-full h-35 rounded-t-md overflow-clip'>
                 <Image
