@@ -4,6 +4,7 @@ import "./globals.css";
 import ReactQueryProvider from "@/providers/query_provider";
 import { Toaster } from 'react-hot-toast';
 import NavBar from "@/components/client/layout/nav";
+import Providers from "@/providers";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -26,11 +27,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col tracking-wider">
-        <ReactQueryProvider>
-          {/* <NavBar/> */}
+        <Providers>
           {children}
           <Toaster />
-        </ReactQueryProvider>
+        </Providers>
       </body>
     </html>
   );
