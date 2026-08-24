@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import ReactQueryProvider from "@/providers/query_provider";
 import { Toaster } from 'react-hot-toast';
-import NavBar from "@/components/client/layout/nav";
 import Providers from "@/providers";
+import WishlistProvider from "@/providers/wishList.provider";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -28,7 +27,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col tracking-wider">
         <Providers>
-          {children}
+          <WishlistProvider>
+{children}
+          </WishlistProvider>
           <Toaster />
         </Providers>
       </body>

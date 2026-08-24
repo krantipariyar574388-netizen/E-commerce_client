@@ -1,22 +1,21 @@
-import { IUser, TLogin, TRegister } from "@/types/auth.types";
-import React from "react";
+import { createContext } from "react";
 
-type TAuthContext = {
-    user : IUser | null;
-    isLoading : boolean;
-    logout : () => void;
-    login : (data : TLogin) => void;
-    signUp : (data : TRegister) => void;
-};
+interface IWishlistContext {
+  wishlist: any[];
+  isLoading: boolean;
+  addToWishlist: (productId: string) => void;
+  removeFromWishlist: (wishlistItemId: string) => void;
+  isInWishlist: (productId: string) => boolean;
+  getWishlistItemId: (productId: string) => string | undefined;
+}
 
-const initialValue : TAuthContext = {
-    user : null,
-    isLoading : false,
-    logout : () => {},
-    login : () => {},
-    signUp : () => {},
-};
+const WishlistContext = createContext<IWishlistContext>({
+  wishlist: [],
+  isLoading: false,
+  addToWishlist: () => {},
+  removeFromWishlist: () => {},
+  isInWishlist: () => false,
+  getWishlistItemId: () => undefined,
+});
 
-const AuthContext = React.createContext<TAuthContext>(initialValue);
-
-export default AuthContext;
+export default WishlistContext;
