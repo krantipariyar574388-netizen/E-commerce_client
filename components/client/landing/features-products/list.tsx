@@ -16,7 +16,7 @@ const ProductList = () => {
     }
 
     return (
-        <div className='grid grid-cols-5 mt-5 gap-6'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 mt-5 mb-10 gap-10 justify-items-center'>
   {Array.isArray(data) && data.length > 0 ? (
                 data.map((product: TProducts) => (
                     <ProductCard key={product._id} products={product} />

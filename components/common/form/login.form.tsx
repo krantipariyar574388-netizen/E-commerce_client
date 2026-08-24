@@ -4,13 +4,17 @@ import Input from "../ui/input";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "@/schema/auth.schema";
 import { TLogin } from "@/types/auth.types";
-import { login } from "@/api/auth.api";
-import {useMutation} from "@tanstack/react-query";
-import toast from "react-hot-toast";
+// import { login } from "@/api/auth.api";
+// import {useMutation} from "@tanstack/react-query";
+// import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { useContext } from "react";
+import AuthContext from "@/contexts/auth.context";
+
 
 const LoginForm = () => {
   const router = useRouter()
+  const { login} = useContext(AuthContext)
   const { register, handleSubmit, formState: { errors } } = useForm<TLogin>({
     defaultValues: {
       email: "",
@@ -19,19 +23,19 @@ const LoginForm = () => {
     resolver : yupResolver(loginSchema)
   });
 
-  const { mutate, isPending } = useMutation({
-    mutationFn : login,
-    onSuccess : (data) => {
-      toast.success(data?.message ?? "Login success");
-      router.replace('/')
-    },
-    onError : (error) => {
-      toast.error(error?.message ?? "Login failded");
-    }
-  })
+  // const { mutate, isPending } = useMutation({
+  //   mutationFn : login,
+  //   onSuccess : (data) => {
+  //     toast.success(data?.message ?? "Login success");
+  //     router.replace('/')
+  //   },
+  //   onError : (error) => {
+  //     toast.error(error?.message ?? "Login failded");
+  //   }
+  // })
 
   const onSubmit = async (data: TLogin) => {
-    mutate(data)
+    login(data)
   };
 
   return (

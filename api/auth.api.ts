@@ -26,6 +26,7 @@ export const logout = async () => {
   }
 };
 
+// register
 export const register = async (data: TRegister) => {
   try {
     const response = await api.post("/auth/register", data);

@@ -11,7 +11,7 @@ interface IProps {
 
 const ProductCard = ({ products: { _id, name, cover_image, description, rate, category, brand } }: IProps) => {
     return (
-        <div className='relative max-w-60 h-full border border-gray-300 rounded-md group flex flex-col'>
+        <div className='relative h-full max-w-80 border border-gray-300 rounded-md group flex flex-col overflow-clip'>
             <button className='absolute top-2 right-1 z-10 cursor-pointer border border-yellow-600 h-8 aspect-square rounded-full flex justify-left items-center p-1 bg-yellow-500/30'>
                 <FaRegHeart className='text-yellow-600 size={20}' />
             </button>
